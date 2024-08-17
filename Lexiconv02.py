@@ -2,9 +2,11 @@
 #They are unordered, mutable, and indexed by keys, which can be of any immutable type (like strings, numbers, or tuples)
 #You can give them order though
 'Bitcoin Mining Dictionary'
-
+import time
+import os
 import json
 BtcWord = input(" ")
+
 
 BitcoinTerminology = {
    "PSU": "Power Supply Unit - a critical hardware component that converts electrical power into a form usable by the computer's internal components.",
@@ -34,26 +36,42 @@ BitcoinTerminology = {
     "Sat": "Sat - A satoshi, often abbreviated as sat, is the smallest unit of the Bitcoin cryptocurrency, named after its creator, Satoshi Nakamoto. One satoshi is equal to one hundred millionth of a single Bitcoin, or 0.00000001 BTC",
     }
 
-# Function to get definition by keyword
+print(json.dumps(BitcoinTerminology, indent=2))  # Add this line after defining the dictionary
+
+# Function to clear the screen
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+# Function to animate scrolling text horizontally
+def scroll_text_horizontally(text, width=80, delay=0.05):
+    padded_text = ' ' * width + text + ' ' * width
+    for i in range(len(padded_text) - width + 1):
+        clear_screen()
+        print(padded_text[i:i+width])
+        time.sleep(delay)
+
 def get_definition():
     while True:
-        BtcWord = input("Code Name: ").strip()
-        
+        BtcWord = input("Enter Code Name or 'exit' to quit: ").strip()
+
         if BtcWord.lower() == "exit":
             print("Exiting the program.")
             break
-        elif BtcWord.lower() == "all":
-            for key, value in BitcoinTerminology.items():
-                formatted_output = json.dumps(BitcoinTerminology, indent=4, sort_keys=True)
-                print(formatted_output)
-                print(f"{key}: {value}\n")
-        elif BtcWord in BitcoinTerminology:
-            print(f"{BtcWord}: {BitcoinTerminology[BtcWord]}")
         else:
-            print("Keyword not found. Please try again.")
+            # Normalize the input to lowercase for case-insensitive matching
+            BtcWord = BtcWord.lower()
+            # Use a case-insensitive search for keys
+            matched_key = next((key for key in BitcoinTerminology if key.lower() == BtcWord), None)
+            if matched_key:
+                definition = BitcoinTerminology[matched_key]
+                scroll_text_horizontally(f"{matched_key}: {definition}")
+            else:
+                print("Keyword not found. Please try again.")
 
-# Run the input system
-get_definition()
+
+# Main function to start the program
+if __name__ == "__main__":
+    get_definition()
 
 #Explanation:
 #BitcoinTerminology Dictionary: This dictionary contains the keywords and their corresponding definitions.
@@ -62,7 +80,6 @@ get_definition()
 #'exit' Keyword: Typing exit will stop the program.
 #Keyword Search: If the input matches a keyword in the dictionary, the script will display the corresponding definition. If the keyword is not found, it will prompt the user to try again.
 #You can run this script in any Python environment to test it out!
-
 
 
 
