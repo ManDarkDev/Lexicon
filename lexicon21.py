@@ -321,7 +321,7 @@ def update_suggestions(*args):
 
 # Setup the GUI interface
 root = tk.Tk()
-root.title("Bitcoin Mining Lexicon")
+root.title("The Lexicon")
 root.geometry("500x500")
 
 # Define colors
