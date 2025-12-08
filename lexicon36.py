@@ -4,7 +4,7 @@ import difflib
 from tkinter import ttk
 from PIL import Image, ImageTk
 
-
+##during this time had to reset my cpu. after i came home from work on friiday i noticed my laptop acting exrtremely slow. earlier that day i posted my academic schedule that i built for myself. 
 
 BitcoinTerminology = {
     "hole mobility":"- Hole mobility (μh): the speed of holes per unit electric field.High mobility means faster current flow and better device performance. Mobility depends on factors such as temperature, impurities, and scattering events inside the crystal lattice. Materials like silicon and gallium arsenide are prized in electronics partly because of their favorable carrier mobilities.",
